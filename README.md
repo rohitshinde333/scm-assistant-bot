@@ -8,7 +8,7 @@
 | | |
 |---|---|
 | **Public Chatbot URL** | `https://cloud.flowiseai.com/chatbot/daec4a2d-405a-4140-9df0-9efeac2d4a4c` |
-| **GitHub Repository** | `https://github.com/rohitshinde333/scm-assistant` |
+| **GitHub Repository** | `https://github.com/rohitshinde333/scm-assistant-bot.git` |
 
 ---
 
