@@ -1,0 +1,746 @@
+{
+  "nodes": [
+    {
+      "id": "startAgentflow_0",
+      "type": "agentFlow",
+      "position": {
+        "x": -160.5,
+        "y": 37
+      },
+      "data": {
+        "id": "startAgentflow_0",
+        "label": "Start",
+        "version": 1.1,
+        "name": "startAgentflow",
+        "type": "Start",
+        "color": "#7EE787",
+        "hideInput": true,
+        "baseClasses": [
+          "Start"
+        ],
+        "category": "Agent Flows",
+        "description": "Starting point of the agentflow",
+        "inputParams": [
+          {
+            "label": "Input Type",
+            "name": "startInputType",
+            "type": "options",
+            "options": [
+              {
+                "label": "Chat Input",
+                "name": "chatInput",
+                "description": "Start the conversation with chat input"
+              },
+              {
+                "label": "Form Input",
+                "name": "formInput",
+                "description": "Start the workflow with form inputs"
+              }
+            ],
+            "default": "chatInput",
+            "id": "startAgentflow_0-input-startInputType-options",
+            "display": true
+          },
+          {
+            "label": "Form Title",
+            "name": "formTitle",
+            "type": "string",
+            "placeholder": "Please Fill Out The Form",
+            "show": {
+              "startInputType": "formInput"
+            },
+            "id": "startAgentflow_0-input-formTitle-string",
+            "display": false
+          },
+          {
+            "label": "Form Description",
+            "name": "formDescription",
+            "type": "string",
+            "placeholder": "Complete all fields below to continue",
+            "show": {
+              "startInputType": "formInput"
+            },
+            "id": "startAgentflow_0-input-formDescription-string",
+            "display": false
+          },
+          {
+            "label": "Form Input Types",
+            "name": "formInputTypes",
+            "description": "Specify the type of form input",
+            "type": "array",
+            "show": {
+              "startInputType": "formInput"
+            },
+            "array": [
+              {
+                "label": "Type",
+                "name": "type",
+                "type": "options",
+                "options": [
+                  {
+                    "label": "String",
+                    "name": "string"
+                  },
+                  {
+                    "label": "Number",
+                    "name": "number"
+                  },
+                  {
+                    "label": "Boolean",
+                    "name": "boolean"
+                  },
+                  {
+                    "label": "Options",
+                    "name": "options"
+                  }
+                ],
+                "default": "string"
+              },
+              {
+                "label": "Label",
+                "name": "label",
+                "type": "string",
+                "placeholder": "Label for the input"
+              },
+              {
+                "label": "Variable Name",
+                "name": "name",
+                "type": "string",
+                "placeholder": "Variable name for the input (must be camel case)",
+                "description": "Variable name must be camel case. For example: firstName, lastName, etc."
+              },
+              {
+                "label": "Add Options",
+                "name": "addOptions",
+                "type": "array",
+                "show": {
+                  "formInputTypes[$index].type": "options"
+                },
+                "array": [
+                  {
+                    "label": "Option",
+                    "name": "option",
+                    "type": "string"
+                  }
+                ]
+              }
+            ],
+            "id": "startAgentflow_0-input-formInputTypes-array",
+            "display": false
+          },
+          {
+            "label": "Ephemeral Memory",
+            "name": "startEphemeralMemory",
+            "type": "boolean",
+            "description": "Start fresh for every execution without past chat history",
+            "optional": true,
+            "id": "startAgentflow_0-input-startEphemeralMemory-boolean",
+            "display": true
+          },
+          {
+            "label": "Flow State",
+            "name": "startState",
+            "description": "Runtime state during the execution of the workflow",
+            "type": "array",
+            "optional": true,
+            "array": [
+              {
+                "label": "Key",
+                "name": "key",
+                "type": "string",
+                "placeholder": "Foo"
+              },
+              {
+                "label": "Value",
+                "name": "value",
+                "type": "string",
+                "placeholder": "Bar",
+                "optional": true
+              }
+            ],
+            "id": "startAgentflow_0-input-startState-array",
+            "display": true
+          },
+          {
+            "label": "Persist State",
+            "name": "startPersistState",
+            "type": "boolean",
+            "description": "Persist the state in the same session",
+            "optional": true,
+            "id": "startAgentflow_0-input-startPersistState-boolean",
+            "display": true
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "startInputType": "chatInput",
+          "formTitle": "",
+          "formDescription": "",
+          "formInputTypes": "",
+          "startEphemeralMemory": "",
+          "startState": "",
+          "startPersistState": ""
+        },
+        "outputAnchors": [
+          {
+            "id": "startAgentflow_0-output-startAgentflow",
+            "label": "Start",
+            "name": "startAgentflow"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 103,
+      "height": 66,
+      "positionAbsolute": {
+        "x": -160.5,
+        "y": 37
+      },
+      "selected": false,
+      "dragging": false
+    },
+    {
+      "id": "agentAgentflow_0",
+      "position": {
+        "x": -4,
+        "y": 28.5
+      },
+      "data": {
+        "id": "agentAgentflow_0",
+        "label": "Agent 0",
+        "version": 3.2,
+        "name": "agentAgentflow",
+        "type": "Agent",
+        "color": "#4DD0E1",
+        "baseClasses": [
+          "Agent"
+        ],
+        "category": "Agent Flows",
+        "description": "Dynamically choose and utilize tools during runtime, enabling multi-step reasoning",
+        "inputParams": [
+          {
+            "label": "Model",
+            "name": "agentModel",
+            "type": "asyncOptions",
+            "loadMethod": "listModels",
+            "loadConfig": true,
+            "id": "agentAgentflow_0-input-agentModel-asyncOptions",
+            "display": true
+          },
+          {
+            "label": "Messages",
+            "name": "agentMessages",
+            "type": "array",
+            "optional": true,
+            "acceptVariable": true,
+            "array": [
+              {
+                "label": "Role",
+                "name": "role",
+                "type": "options",
+                "options": [
+                  {
+                    "label": "System",
+                    "name": "system"
+                  },
+                  {
+                    "label": "Assistant",
+                    "name": "assistant"
+                  },
+                  {
+                    "label": "Developer",
+                    "name": "developer"
+                  },
+                  {
+                    "label": "User",
+                    "name": "user"
+                  }
+                ]
+              },
+              {
+                "label": "Content",
+                "name": "content",
+                "type": "string",
+                "acceptVariable": true,
+                "generateInstruction": true,
+                "rows": 4
+              }
+            ],
+            "id": "agentAgentflow_0-input-agentMessages-array",
+            "display": true
+          },
+          {
+            "label": "OpenAI Built-in Tools",
+            "name": "agentToolsBuiltInOpenAI",
+            "type": "multiOptions",
+            "optional": true,
+            "options": [
+              {
+                "label": "Web Search",
+                "name": "web_search_preview",
+                "description": "Search the web for the latest information"
+              },
+              {
+                "label": "Code Interpreter",
+                "name": "code_interpreter",
+                "description": "Write and run Python code in a sandboxed environment"
+              },
+              {
+                "label": "Image Generation",
+                "name": "image_generation",
+                "description": "Generate images based on a text prompt"
+              }
+            ],
+            "show": {
+              "agentModel": "chatOpenAI"
+            },
+            "id": "agentAgentflow_0-input-agentToolsBuiltInOpenAI-multiOptions",
+            "display": false
+          },
+          {
+            "label": "Gemini Built-in Tools",
+            "name": "agentToolsBuiltInGemini",
+            "type": "multiOptions",
+            "optional": true,
+            "options": [
+              {
+                "label": "URL Context",
+                "name": "urlContext",
+                "description": "Extract content from given URLs"
+              },
+              {
+                "label": "Google Search",
+                "name": "googleSearch",
+                "description": "Search real-time web content"
+              },
+              {
+                "label": "Code Execution",
+                "name": "codeExecution",
+                "description": "Write and run Python code in a sandboxed environment"
+              }
+            ],
+            "show": {
+              "agentModel": "chatGoogleGenerativeAI"
+            },
+            "id": "agentAgentflow_0-input-agentToolsBuiltInGemini-multiOptions",
+            "display": true
+          },
+          {
+            "label": "Anthropic Built-in Tools",
+            "name": "agentToolsBuiltInAnthropic",
+            "type": "multiOptions",
+            "optional": true,
+            "options": [
+              {
+                "label": "Web Search",
+                "name": "web_search_20250305",
+                "description": "Search the web for the latest information"
+              },
+              {
+                "label": "Web Fetch",
+                "name": "web_fetch_20250910",
+                "description": "Retrieve full content from specified web pages"
+              }
+            ],
+            "show": {
+              "agentModel": "chatAnthropic"
+            },
+            "id": "agentAgentflow_0-input-agentToolsBuiltInAnthropic-multiOptions",
+            "display": false
+          },
+          {
+            "label": "Tools",
+            "name": "agentTools",
+            "type": "array",
+            "optional": true,
+            "array": [
+              {
+                "label": "Tool",
+                "name": "agentSelectedTool",
+                "type": "asyncOptions",
+                "loadMethod": "listTools",
+                "loadConfig": true
+              },
+              {
+                "label": "Require Human Input",
+                "name": "agentSelectedToolRequiresHumanInput",
+                "type": "boolean",
+                "optional": true
+              }
+            ],
+            "id": "agentAgentflow_0-input-agentTools-array",
+            "display": true
+          },
+          {
+            "label": "Knowledge (Document Stores)",
+            "name": "agentKnowledgeDocumentStores",
+            "type": "array",
+            "description": "Give your agent context about different document sources. Document stores must be upserted in advance.",
+            "array": [
+              {
+                "label": "Document Store",
+                "name": "documentStore",
+                "type": "asyncOptions",
+                "loadMethod": "listStores"
+              },
+              {
+                "label": "Describe Knowledge",
+                "name": "docStoreDescription",
+                "type": "string",
+                "generateDocStoreDescription": true,
+                "placeholder": "Describe what the knowledge base is about, this is useful for the AI to know when and how to search for correct information",
+                "rows": 4
+              },
+              {
+                "label": "Return Source Documents",
+                "name": "returnSourceDocuments",
+                "type": "boolean",
+                "optional": true
+              }
+            ],
+            "optional": true,
+            "id": "agentAgentflow_0-input-agentKnowledgeDocumentStores-array",
+            "display": true
+          },
+          {
+            "label": "Knowledge (Vector Embeddings)",
+            "name": "agentKnowledgeVSEmbeddings",
+            "type": "array",
+            "description": "Give your agent context about different document sources from existing vector stores and embeddings",
+            "array": [
+              {
+                "label": "Vector Store",
+                "name": "vectorStore",
+                "type": "asyncOptions",
+                "loadMethod": "listVectorStores",
+                "loadConfig": true
+              },
+              {
+                "label": "Embedding Model",
+                "name": "embeddingModel",
+                "type": "asyncOptions",
+                "loadMethod": "listEmbeddings",
+                "loadConfig": true
+              },
+              {
+                "label": "Knowledge Name",
+                "name": "knowledgeName",
+                "type": "string",
+                "placeholder": "A short name for the knowledge base, this is useful for the AI to know when and how to search for correct information"
+              },
+              {
+                "label": "Describe Knowledge",
+                "name": "knowledgeDescription",
+                "type": "string",
+                "placeholder": "Describe what the knowledge base is about, this is useful for the AI to know when and how to search for correct information",
+                "rows": 4
+              },
+              {
+                "label": "Return Source Documents",
+                "name": "returnSourceDocuments",
+                "type": "boolean",
+                "optional": true
+              }
+            ],
+            "optional": true,
+            "id": "agentAgentflow_0-input-agentKnowledgeVSEmbeddings-array",
+            "display": true
+          },
+          {
+            "label": "Enable Memory",
+            "name": "agentEnableMemory",
+            "type": "boolean",
+            "description": "Enable memory for the conversation thread",
+            "default": true,
+            "optional": true,
+            "id": "agentAgentflow_0-input-agentEnableMemory-boolean",
+            "display": true
+          },
+          {
+            "label": "Memory Type",
+            "name": "agentMemoryType",
+            "type": "options",
+            "options": [
+              {
+                "label": "All Messages",
+                "name": "allMessages",
+                "description": "Retrieve all messages from the conversation"
+              },
+              {
+                "label": "Window Size",
+                "name": "windowSize",
+                "description": "Uses a fixed window size to surface the last N messages"
+              },
+              {
+                "label": "Conversation Summary",
+                "name": "conversationSummary",
+                "description": "Summarizes the whole conversation"
+              },
+              {
+                "label": "Conversation Summary Buffer",
+                "name": "conversationSummaryBuffer",
+                "description": "Summarize conversations once token limit is reached. Default to 2000"
+              }
+            ],
+            "optional": true,
+            "default": "allMessages",
+            "show": {
+              "agentEnableMemory": true
+            },
+            "id": "agentAgentflow_0-input-agentMemoryType-options",
+            "display": true
+          },
+          {
+            "label": "Window Size",
+            "name": "agentMemoryWindowSize",
+            "type": "number",
+            "default": "20",
+            "description": "Uses a fixed window size to surface the last N messages",
+            "show": {
+              "agentMemoryType": "windowSize"
+            },
+            "id": "agentAgentflow_0-input-agentMemoryWindowSize-number",
+            "display": false
+          },
+          {
+            "label": "Max Token Limit",
+            "name": "agentMemoryMaxTokenLimit",
+            "type": "number",
+            "default": "2000",
+            "description": "Summarize conversations once token limit is reached. Default to 2000",
+            "show": {
+              "agentMemoryType": "conversationSummaryBuffer"
+            },
+            "id": "agentAgentflow_0-input-agentMemoryMaxTokenLimit-number",
+            "display": false
+          },
+          {
+            "label": "Input Message",
+            "name": "agentUserMessage",
+            "type": "string",
+            "description": "Add an input message as user message at the end of the conversation",
+            "rows": 4,
+            "optional": true,
+            "acceptVariable": true,
+            "show": {
+              "agentEnableMemory": true
+            },
+            "id": "agentAgentflow_0-input-agentUserMessage-string",
+            "display": true
+          },
+          {
+            "label": "Return Response As",
+            "name": "agentReturnResponseAs",
+            "type": "options",
+            "options": [
+              {
+                "label": "User Message",
+                "name": "userMessage"
+              },
+              {
+                "label": "Assistant Message",
+                "name": "assistantMessage"
+              }
+            ],
+            "default": "userMessage",
+            "id": "agentAgentflow_0-input-agentReturnResponseAs-options",
+            "display": true
+          },
+          {
+            "label": "JSON Structured Output",
+            "name": "agentStructuredOutput",
+            "description": "Instruct the Agent to give output in a JSON structured schema",
+            "type": "array",
+            "optional": true,
+            "acceptVariable": true,
+            "array": [
+              {
+                "label": "Key",
+                "name": "key",
+                "type": "string"
+              },
+              {
+                "label": "Type",
+                "name": "type",
+                "type": "options",
+                "options": [
+                  {
+                    "label": "String",
+                    "name": "string"
+                  },
+                  {
+                    "label": "String Array",
+                    "name": "stringArray"
+                  },
+                  {
+                    "label": "Number",
+                    "name": "number"
+                  },
+                  {
+                    "label": "Boolean",
+                    "name": "boolean"
+                  },
+                  {
+                    "label": "Enum",
+                    "name": "enum"
+                  },
+                  {
+                    "label": "JSON Array",
+                    "name": "jsonArray"
+                  }
+                ]
+              },
+              {
+                "label": "Enum Values",
+                "name": "enumValues",
+                "type": "string",
+                "placeholder": "value1, value2, value3",
+                "description": "Enum values. Separated by comma",
+                "optional": true,
+                "show": {
+                  "agentStructuredOutput[$index].type": "enum"
+                }
+              },
+              {
+                "label": "JSON Schema",
+                "name": "jsonSchema",
+                "type": "code",
+                "placeholder": "{\n    \"answer\": {\n        \"type\": \"string\",\n        \"description\": \"Value of the answer\"\n    },\n    \"reason\": {\n        \"type\": \"string\",\n        \"description\": \"Reason for the answer\"\n    },\n    \"optional\": {\n        \"type\": \"boolean\"\n    },\n    \"count\": {\n        \"type\": \"number\"\n    },\n    \"children\": {\n        \"type\": \"array\",\n        \"items\": {\n            \"type\": \"object\",\n            \"properties\": {\n                \"value\": {\n                    \"type\": \"string\",\n                    \"description\": \"Value of the children's answer\"\n                }\n            }\n        }\n    }\n}",
+                "description": "JSON schema for the structured output",
+                "optional": true,
+                "hideCodeExecute": true,
+                "show": {
+                  "agentStructuredOutput[$index].type": "jsonArray"
+                }
+              },
+              {
+                "label": "Description",
+                "name": "description",
+                "type": "string",
+                "placeholder": "Description of the key"
+              }
+            ],
+            "id": "agentAgentflow_0-input-agentStructuredOutput-array",
+            "display": true
+          },
+          {
+            "label": "Update Flow State",
+            "name": "agentUpdateState",
+            "description": "Update runtime state during the execution of the workflow",
+            "type": "array",
+            "optional": true,
+            "acceptVariable": true,
+            "array": [
+              {
+                "label": "Key",
+                "name": "key",
+                "type": "asyncOptions",
+                "loadMethod": "listRuntimeStateKeys"
+              },
+              {
+                "label": "Value",
+                "name": "value",
+                "type": "string",
+                "acceptVariable": true,
+                "acceptNodeOutputAsVariable": true
+              }
+            ],
+            "id": "agentAgentflow_0-input-agentUpdateState-array",
+            "display": true
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "agentModel": "chatGoogleGenerativeAI",
+          "agentMessages": "",
+          "agentToolsBuiltInGemini": "",
+          "agentTools": [
+            {
+              "agentSelectedTool": "customTool",
+              "agentSelectedToolRequiresHumanInput": "",
+              "agentSelectedToolConfig": {
+                "selectedTool": "e3d23426-dc26-477a-bef1-95e3ab26038c",
+                "returnDirect": "",
+                "customToolName": "",
+                "customToolDesc": "",
+                "customToolSchema": "",
+                "customToolFunc": "",
+                "agentSelectedTool": "customTool"
+              }
+            },
+            {
+              "agentSelectedTool": "calculator",
+              "agentSelectedToolRequiresHumanInput": "",
+              "agentSelectedToolConfig": {
+                "agentSelectedTool": "calculator"
+              }
+            }
+          ],
+          "agentKnowledgeDocumentStores": [
+            {
+              "documentStore": "6cffaf56-c762-48ca-8344-1904f8476f0d:Trinamix",
+              "docStoreDescription": "Supplier Governance & Compliance Policy document containing tier classifications, SLA thresholds, penalty rules, audit procedures, compliance requirements, disruption response levels (§9), volume rebate criteria (§4.2), SWL restrictions (§3.4), concentration limits (§5.3), and certification requirements.",
+              "returnSourceDocuments": true
+            }
+          ],
+          "agentKnowledgeVSEmbeddings": [],
+          "agentEnableMemory": true,
+          "agentMemoryType": "allMessages",
+          "agentUserMessage": "You are SCM Assistant, an expert supply chain analyst for BQBYTE Technologies. You have access to three tools:\n\n1. **SQL Tool** — Use sql_query_executor to query the supplier_performace table in PostgreSQL for all supplier data questions.\n2. **Policy Document** — Use document store for all governance policy questions.\n3. **Calculator** — Use for all mathematical operations involving financial figures or threshold comparisons.\n\n## Database Schema\n\nTable: supplier_performace\n\nColumns:\n\n- Supplier_Name (text), Supplier_ID (text)\n- Region (text): 'APAC', 'EMEA', 'LATAM', 'NA'\n- Country (text)\n- Contract_Tier (text): 'Tier-1', 'Tier-2', 'Tier-3'\n- OTD_Rate_Pct (float): percentage 0-100 e.g. 93.0\n- Defect_Rate_Pct (float): percentage 0-100 e.g. 0.5\n- Compliance_Score (float): 0-100 e.g. 60\n- Sustainability_Score (float): 0-100 e.g. 85\n- Risk_Level (text): 'High', 'Medium', 'Low'\n- Active_Disruptions (text): 'None' if no disruption\n- PO_Value_USD (float): purchase order value in USD\n- Product_Category (text)\n- PO_ID (text), Product_SKU (text)\n- Unit_Cost_USD (float), Lead_Time_Days (int)\n- Payment_Terms_Days (int), MOQ_Units (int)\n- Annual_Volume_Units (int), Certifications (text)\n- Last_Audit_Date (date), PO_Quarter (text)\n- Units_Ordered (int), Units_Delivered_On_Time (int)\n- Units_Rejected (int), Alt_Supplier_ID (text)\n\n## Understanding the Data Model\n\nThis table has 2,000 rows — approximately 17 POs per supplier. Each row\n\nrepresents one purchase order, not one supplier. The same supplier appears\n\nmultiple times with different metric values per PO. This means:\n\n- Aggregations like SUM() and AVG() must account for all POs\n- Supplier identification requires DISTINCT to avoid counting duplicates\n- A supplier's metrics vary per PO — do not assume a single value represents the supplier\n\n## SQL Guidelines\n\n**General rules:**\n\n- No semicolons at end of query\n- String values use single quotes: 'Tier-1', 'None', 'High' etc.\n- Use ROUND(value::numeric, 2) for formatted decimals\n\n**For supplier identification questions**\n\n(who qualifies, who is on watch list, who has disruptions, which suppliers meet a threshold):\n\n→ Use DISTINCT Supplier_Name, Supplier_ID with WHERE filters\n\n→ Reason: a supplier is identified by ANY single PO matching the criteria\n\n→ Example pattern:\n\n   SELECT DISTINCT Supplier_Name, Supplier_ID\n\n   FROM supplier_performace\n\n   WHERE [policy-defined criteria from Step 2]\n\n**For consolidating supplier attributes across multiple POs:**\n\n→ Use GROUP BY Supplier_Name, Supplier_ID with STRING_AGG(DISTINCT column, ', ')\n\n→ Reason: avoids duplicate rows, shows all unique values per supplier in one row\n\n→ Example pattern:\n\n   SELECT Supplier_Name, Supplier_ID,\n\n```\n      STRING_AGG(DISTINCT Risk_Level, ', ') as risk_levels,\n\n      STRING_AGG(DISTINCT Certifications, ', ') as certifications\n```\n\n   FROM supplier_performace\n\n   WHERE Region = 'LATAM'\n\n   GROUP BY Supplier_Name, Supplier_ID\n\n**For financial aggregation questions**\n\n(total spend, spend by region, total PO value):\n\n→ Use SUM(PO_Value_USD) across all rows\n\n→ Reason: each PO row has an independent monetary value that must be summed\n\n→ Example pattern:\n\n   SELECT Country, SUM(PO_Value_USD) as total\n\n   FROM supplier_performace\n\n   GROUP BY Country\n\n   ORDER BY total DESC\n\n**For performance trend questions**\n\n(average defect rate by category, average OTD by region):\n\n→ Use AVG() with GROUP BY\n\n→ Reason: summarizes performance across all POs in that group\n\n→ Example pattern:\n\n   SELECT Region,\n\n```\n      ROUND(AVG(OTD_Rate_Pct)::numeric, 2) as avg_otd,\n\n      COUNT(*) as po_count\n```\n\n   FROM supplier_performace\n\n   GROUP BY Region\n\n   ORDER BY avg_otd DESC\n\n**Never use HAVING AVG() for pass/fail eligibility criteria** — it returns\n\nzero results because no supplier maintains perfect metrics across every single PO.\n\n## Calculator Tool Usage\n\nAlways use the calculator for mathematical operations — never do multi-step\n\narithmetic mentally.\n\n**When to use calculator:**\n\n- Computing percentages: (partial_value / total_value) * 100\n- Comparing a computed value against a policy threshold\n- Any division, multiplication, or percentage calculation involving financial figures\n- Verifying if a metric breaches a threshold\n\n**When NOT to use calculator:**\n\n- SQL already computes the value using SUM, AVG, ROUND — trust the SQL result directly\n- Simple obvious comparisons like \"is 1.91 > 2.50?\" — reason directly\n\n**Example — country-level spend analysis:**\n\n- Policy §5.3 retrieved first: single country limit is 25% of total spend\n- SQL returns: Germany total = 48,200,000, grand total = 355,045,247\n- Calculator: 48200000 / 355045247 * 100 = 13.57%\n- Conclusion: 13.57% < 25% → no breach\n\n## Behavior Rules\n\n**Step 1 — Classify the question:**\n\n- Pure data question (counts, lists with no policy threshold) → sql_query_executor only\n- Pure policy question (what does policy say) → document store only\n- Combined question (which suppliers breach X, who qualifies for Y) → follow Steps 2-5\n\n**Step 2 — For combined questions, retrieve policy FIRST:**\n\n- Query document store to find the exact threshold, criteria, or rule\n- Note the exact values (e.g. Compliance Score < 60, OTD ≥ 93.0, limit = 45%)\n- NEVER assume or recall a threshold from memory — always verify from document store\n- This ensures SQL query uses policy-accurate thresholds, not assumed values\n\n**Step 3 — Build SQL query using policy-defined thresholds:**\n\n- Use the exact threshold values retrieved from document store in Step 2\n- Apply appropriate SQL pattern (DISTINCT, GROUP BY, SUM, AVG)\n- Execute via sql_query_executor\n\n**Step 4 — Calculate if needed:**\n\n- Use calculator for any percentage or threshold comparison\n- Never do multi-step arithmetic mentally\n\n**Step 5 — Answer format:**\n\n1. State the policy rule and section reference\n2. State the SQL result (supplier names, numbers, totals)\n3. State the conclusion (breach/no breach, response level, qualifying count)\n\n**Mandatory document store retrieval for these topics:**\n\n- Disruption response levels → §9\n- Volume rebate criteria → §4.2\n- SWL restrictions → §3.4\n- Concentration limits → §5.3\n- Defect rate limits → §3.2\n- Tier classifications → §2\n\nAlways refer to the policy as \"the Supplier Governance Policy\".\n\nNever guess policy rules. Never hallucinate supplier names or numbers.\n\nKeep answers structured and concise.",
+          "agentReturnResponseAs": "assistantMessage",
+          "agentStructuredOutput": "",
+          "agentUpdateState": "",
+          "agentModelConfig": {
+            "cache": "",
+            "modelName": "gemini-3.1-flash-lite-preview",
+            "customModelName": "",
+            "temperature": "0.1",
+            "streaming": true,
+            "allowImageUploads": "",
+            "maxOutputTokens": "",
+            "topP": "",
+            "topK": "",
+            "safetySettings": "",
+            "baseUrl": "",
+            "agentModel": "chatGoogleGenerativeAI"
+          },
+          "undefined": ""
+        },
+        "outputAnchors": [
+          {
+            "id": "agentAgentflow_0-output-agentAgentflow",
+            "label": "Agent",
+            "name": "agentAgentflow"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "type": "agentFlow",
+      "width": 264,
+      "height": 100,
+      "selected": false,
+      "dragging": false,
+      "positionAbsolute": {
+        "x": -4,
+        "y": 28.5
+      }
+    }
+  ],
+  "edges": [
+    {
+      "source": "startAgentflow_0",
+      "sourceHandle": "startAgentflow_0-output-startAgentflow",
+      "target": "agentAgentflow_0",
+      "targetHandle": "agentAgentflow_0",
+      "data": {
+        "sourceColor": "#7EE787",
+        "targetColor": "#4DD0E1",
+        "isHumanInput": false
+      },
+      "type": "agentFlow",
+      "id": "startAgentflow_0-startAgentflow_0-output-startAgentflow-agentAgentflow_0-agentAgentflow_0"
+    }
+  ]
+}
