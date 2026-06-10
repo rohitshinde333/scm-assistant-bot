@@ -324,7 +324,7 @@ Key columns like Contract_Tier, Region, Risk_Level could be promoted to Pinecone
 **4. Hybrid search**
 Combining dense vector search (semantic) with sparse BM25 keyword search in Pinecone would improve retrieval for exact supplier names and policy section references.
 
-**7. Dataset versioning**
+**5. Dataset versioning**
 The provided CSV appears to be a different version from what the sample answers were generated from (different regional totals, supplier counts, risk levels). A production system would version datasets and regenerate ground-truth answers with each update.
 
 ---
